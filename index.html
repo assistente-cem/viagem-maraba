@@ -97,7 +97,7 @@
 
     <!-- HEADER MILITAR PREMIUM -->
     <header class="glass-header sticky top-0 z-40 text-white border-b-4 border-gold shadow-lg">
-        <div class="max-w-md mx-auto px-4 py-3 flex flex-col gap-2">
+        <div class="max-w-md mx-auto px-4 py-4 flex flex-col gap-2">
             
             <!-- Barra Superior do Header -->
             <div class="flex justify-between items-center">
@@ -106,22 +106,21 @@
                     <img src="brasao-4dn.png" alt="Brasão 4º DN" class="h-10 w-auto object-contain" onerror="this.onerror=null; this.outerHTML='<div class=&quot;bg-gold p-1.5 rounded-full flex items-center justify-center shadow-inner&quot;><i class=&quot;fa-solid fa-anchor text-navy-dark text-lg&quot;></i></div>';">
                     <div>
                         <h1 class="text-xs font-bold tracking-widest uppercase text-gold-light">Marinha do Brasil</h1>
-                        <p class="text-[10px] font-medium tracking-wide text-slate-300">4º Distrito Naval • Belém/Marabá</p>
+                        <p class="text-[10px] font-medium tracking-wide text-slate-300">Comando do 4º Distrito Naval</p>
                     </div>
                 </div>
                 <!-- Badge de Status de Viagem -->
                 <div class="flex flex-col items-end">
                     <span class="bg-emerald-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1">
-                        <span class="h-1.5 w-1.5 rounded-full bg-white animate-pulse"></span> Viagem Oficial
+                        <span class="h-1.5 w-1.5 rounded-full bg-white animate-pulse"></span> Ativo
                     </span>
-                    <span class="text-[9px] text-slate-400 mt-0.5">Fuso P (Local)</span>
                 </div>
             </div>
 
             <!-- Título do Itinerário -->
             <div class="mt-1">
                 <h2 class="text-sm font-extrabold text-white tracking-wide uppercase">Operação Carimbó - Projeto Rondon</h2>
-                <p class="text-xs text-slate-300">Viagem de Comitiva à Marabá-PA</p>
+                <p class="text-xs text-slate-300">Viagem institucional à Marabá-PA</p>
             </div>
         </div>
     </header>
@@ -129,39 +128,17 @@
     <!-- CONTAINER PRINCIPAL -->
     <main class="max-w-md mx-auto px-4 mt-4">
 
-        <!-- SIMULADOR DE TEMPO (EXCLUSIVO PARA TESTAR A LINHA "AGORA" EM QUALQUER DATA) -->
-        <div class="bg-white rounded-xl p-3 border border-slate-200 shadow-sm mb-4">
-            <div class="flex justify-between items-center mb-1">
-                <span class="text-[11px] font-semibold text-slate-500 flex items-center gap-1">
-                    <i class="fa-solid fa-circle-info text-navy"></i> Simulador de Tempo Operacional
-                </span>
-                <span id="simulatorStatus" class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-0.5 rounded">Tempo Real</span>
-            </div>
-            <div class="flex flex-col gap-2">
-                <div class="flex items-center gap-2">
-                    <select id="simDate" class="flex-1 bg-slate-50 border border-slate-300 text-xs rounded-lg p-1.5 focus:ring-navy focus:border-navy text-slate-700 font-medium">
-                        <option value="real">Utilizar Hora do Sistema</option>
-                        <option value="2026-07-09">09 JUL 2026 (Quinta)</option>
-                        <option value="2026-07-10" selected>10 JUL 2026 (Sexta)</option>
-                        <option value="2026-07-11">11 JUL 2026 (Sábado)</option>
-                    </select>
-                    <input type="time" id="simTime" value="09:30" class="w-24 bg-slate-50 border border-slate-300 text-xs rounded-lg p-1.5 focus:ring-navy focus:border-navy text-slate-700 font-medium">
-                </div>
-                <p class="text-[9px] text-slate-400 text-center italic">Como o evento real ocorre em Julho de 2026, use o simulador para mover a linha "AGORA" e testar!</p>
-            </div>
-        </div>
-
         <!-- ABAS DE NAVEGAÇÃO DOS DIAS (TABS) -->
         <nav class="flex gap-2 mb-4 bg-slate-100 p-1 rounded-xl shadow-inner border border-slate-200/60">
-            <button onclick="switchTab('2026-07-09')" id="tab-2026-07-09" class="tab-btn flex-1 py-2.5 rounded-lg text-xs font-bold transition-all flex flex-col items-center justify-center gap-0.5 text-slate-500 hover:text-navy">
+            <button onclick="switchTab('2026-07-09')" id="tab-2026-07-09" class="tab-btn flex-1 py-3 rounded-lg text-xs font-bold transition-all flex flex-col items-center justify-center gap-0.5 text-slate-500 hover:text-navy">
                 <span>QUI</span>
                 <span class="text-[10px] opacity-85">09 JUL</span>
             </button>
-            <button onclick="switchTab('2026-07-10')" id="tab-2026-07-10" class="tab-btn flex-1 py-2.5 rounded-lg text-xs font-bold transition-all flex flex-col items-center justify-center gap-0.5 text-slate-500 hover:text-navy">
+            <button onclick="switchTab('2026-07-10')" id="tab-2026-07-10" class="tab-btn flex-1 py-3 rounded-lg text-xs font-bold transition-all flex flex-col items-center justify-center gap-0.5 text-slate-500 hover:text-navy">
                 <span>SEX</span>
                 <span class="text-[10px] opacity-85">10 JUL</span>
             </button>
-            <button onclick="switchTab('2026-07-11')" id="tab-2026-07-11" class="tab-btn flex-1 py-2.5 rounded-lg text-xs font-bold transition-all flex flex-col items-center justify-center gap-0.5 text-slate-500 hover:text-navy">
+            <button onclick="switchTab('2026-07-11')" id="tab-2026-07-11" class="tab-btn flex-1 py-3 rounded-lg text-xs font-bold transition-all flex flex-col items-center justify-center gap-0.5 text-slate-500 hover:text-navy">
                 <span>SÁB</span>
                 <span class="text-[10px] opacity-85">11 JUL</span>
             </button>
@@ -196,22 +173,22 @@
     <div class="fixed bottom-0 left-0 right-0 bg-navy-dark text-white border-t-2 border-gold py-2.5 z-30 shadow-[0_-4px_10px_rgba(0,0,0,0.15)]">
         <div class="max-w-md mx-auto px-2 grid grid-cols-4 gap-1 items-center text-center">
             
-            <button onclick="openModal('modalEstadia')" class="flex flex-col items-center gap-1 text-slate-300 hover:text-gold active:scale-90 transition-all">
+            <button onclick="openModal('modalEstadia')" class="flex flex-col items-center gap-1 text-slate-300 hover:text-gold active:scale-90 transition-all py-1">
                 <i class="fa-solid fa-hotel text-base"></i>
                 <span class="text-[9px] font-bold uppercase tracking-wider">Estadia</span>
             </button>
 
-            <button onclick="openModal('modalUniformes')" class="flex flex-col items-center gap-1 text-slate-300 hover:text-gold active:scale-90 transition-all">
+            <button onclick="openModal('modalUniformes')" class="flex flex-col items-center gap-1 text-slate-300 hover:text-gold active:scale-90 transition-all py-1">
                 <i class="fa-solid fa-shirt text-base"></i>
                 <span class="text-[9px] font-bold uppercase tracking-wider">Uniformes</span>
             </button>
 
-            <button onclick="openModal('modalContatos')" class="flex flex-col items-center gap-1 text-slate-300 hover:text-gold active:scale-90 transition-all">
+            <button onclick="openModal('modalContatos')" class="flex flex-col items-center gap-1 text-slate-300 hover:text-gold active:scale-90 transition-all py-1">
                 <i class="fa-solid fa-address-book text-base"></i>
                 <span class="text-[9px] font-bold uppercase tracking-wider">Contatos</span>
             </button>
 
-            <button onclick="openModal('modalArquivos')" class="flex flex-col items-center gap-1 text-slate-300 hover:text-gold active:scale-90 transition-all">
+            <button onclick="openModal('modalArquivos')" class="flex flex-col items-center gap-1 text-slate-300 hover:text-gold active:scale-90 transition-all py-1">
                 <i class="fa-solid fa-folder-open text-base"></i>
                 <span class="text-[9px] font-bold uppercase tracking-wider">Arquivos</span>
             </button>
@@ -219,14 +196,14 @@
         </div>
     </div>
 
-    <!-- MODAL: ESTADIA (APENAS HOTEL INÁCIO'S) -->
+    <!-- MODAL: ESTADIA (EXCLUSIVO) -->
     <div id="modalEstadia" class="fixed inset-0 bg-black/60 z-50 flex items-end justify-center hidden" onclick="closeModalOnOutsideClick(event, 'modalEstadia')">
         <div class="bg-white w-full max-w-md rounded-t-3xl shadow-2xl bottom-sheet hidden-sheet flex flex-col max-h-[85vh]">
             <div class="w-12 h-1.5 bg-slate-300 rounded-full mx-auto my-3 cursor-pointer" onclick="closeModal('modalEstadia')"></div>
             <div class="px-5 pb-5 overflow-y-auto">
                 <div class="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
                     <i class="fa-solid fa-hotel text-navy text-xl"></i>
-                    <h3 class="text-base font-bold text-navy-dark uppercase">Hospedagem & Apoio</h3>
+                    <h3 class="text-base font-bold text-navy-dark uppercase">Hospedagem Única</h3>
                 </div>
                 <div id="estadiaContent" class="space-y-4">
                     <!-- Gerado Dinamicamente -->
@@ -333,6 +310,7 @@
         </div>
     </div>
 
+    <!-- LÓGICA DE DADOS (JAVASCRIPT) -->
     <script>
         // BASE DE DADOS OFICIAIS (CRONOGRAMA CORRIGIDO E FORMATADO)
         const schedule = [
@@ -405,7 +383,7 @@
                         title: "Jantar",
                         local: "Hotel Inácio's",
                         traje: "Passeio",
-                        obs: "Jantar servido na acomodação ou no salão do hotel. Consulte o cardápio disponível.",
+                        obs: "Jantar servido no hotel Inácio's Plaza. Faça download do cardápio em PDF abaixo para ver as opções.",
                         type: "refeição",
                         mapsQuery: "Inacio's Plaza Hotel Marabá",
                         cardapioDownload: "cardapio.pdf"
@@ -435,7 +413,7 @@
                         title: "Café da Manhã",
                         local: "Inácio's Plaza Hotel",
                         traje: "5.5",
-                        obs: "Café da manhã de serviço.",
+                        obs: "Café da manhã de serviço no refeitório do hotel.",
                         type: "refeição",
                         mapsQuery: "Inacio's Plaza Hotel Marabá"
                     },
@@ -628,7 +606,7 @@
                         id: "11.4",
                         timeStart: "14:37",
                         timeEnd: "",
-                        title: "Deslocamento Finais para Residência",
+                        title: "Deslocamento Final para Residência",
                         local: "Trânsito",
                         traje: "Passeio",
                         obs: "Encerramento e desmobilização final das viaturas de apoio.",
@@ -641,21 +619,21 @@
 
         const logistics = {
             estadia: [
-                { hotel: "Inácio's Plaza Hotel (Exclusivo)", localizacao: "Av. Sete de Setembro, 2038 - Novo Horizonte, Marabá-PA", fone: "559433112200", foneDisplay: "(94) 3311-2200" }
+                { hotel: "Inácio's Plaza Hotel", localizacao: "Av. Sete de Setembro, 2038 - Novo Horizonte, Marabá-PA", fone: "559433112200", foneDisplay: "(94) 3311-2200" }
             ],
             uniformes: [
                 { nome: "Traje Passeio", mbCodigo: "Civil / Esporte Fino" },
-                { nome: "Uniforme 5.5", mbCodigo: "Oficiais (Caqui de Serviço)" }
+                { nome: "Uniforme 5.5", mbCodigo: "Uniforme 5.5 com Barretas" }
             ],
             contatos: [
-                { nome: "1º Tenente José Renato (Assistente)", cargo: "Coordenação Geral e Cerimonial", fone: "5591999991234", foneDisplay: "(91) 99999-1234" },
-                { nome: "Coordenação do Ministério da Defesa", cargo: "Logística Terrestre / Transportes", fone: "5561988884321", foneDisplay: "(61) 98888-4321" },
+                { nome: "1T (AA) Renato Mendes", cargo: "Assistente do Chefe do Estado-Maior do Com4DN", fone: "5591999991234", foneDisplay: "(91) 99999-1234" },
+                { nome: "Sra. Adriana", cargo: "Coordenação do Ministério da Defesa", fone: "5561981116499", foneDisplay: "(61) 98111-6499" },
                 { nome: "Recepção Inácio's Plaza Hotel", cargo: "Suporte de Hospedagem & Quarto", fone: "559433112200", foneDisplay: "(94) 3311-2200" }
             ]
         };
 
-        // Estado inicial de exibição de data da timeline
-        let activeTabDate = "2026-07-10"; // Default: foca no dia mais carregado para o preview inicial
+        // Estado ativo de exibição das abas da timeline
+        let activeTabDate = "2026-07-10"; // Foca no dia principal por padrão
 
         // Função para mapear locais para queries detalhadas do Google Maps focadas na região
         function getMapsLink(loc, customQuery) {
@@ -673,12 +651,12 @@
             return `https://flightaware.com/live/flight/${formattedCode}`;
         }
 
-        // Link de Check-in Azul (atualizado conforme instrução)
+        // Link oficial para check-in web da companhia Azul
         function getAzulCheckinLink() {
             return `https://www.voeazul.com.br/br/pt/home/azulwebcheckin`;
         }
 
-        // MODAIS CONTROLADORES (BOTTOM-SHEET)
+        // MODAIS CONTROLADORES (BOTTOM-SHEET SLIDE UP)
         function openModal(id) {
             const modal = document.getElementById(id);
             modal.classList.remove('hidden');
@@ -717,17 +695,16 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <h4 class="font-bold text-navy text-sm flex items-center gap-1.5"><i class="fa-solid fa-hotel text-gold"></i> ${e.hotel}</h4>
-                            <p class="text-[10px] text-slate-500 mt-1">${e.localizacao}</p>
+                            <a href="${getMapsLink(e.hotel, e.hotel)}" target="_blank" class="text-[10px] text-slate-500 hover:text-navy hover:underline mt-1 block">
+                                <i class="fa-solid fa-location-dot"></i> ${e.localizacao}
+                            </a>
                         </div>
-                        <a href="${getMapsLink(e.hotel, e.hotel)}" target="_blank" class="bg-navy hover:bg-navy-light text-white p-2 rounded-lg text-xs flex items-center gap-1 shadow-sm transition-all active:scale-95">
-                            <i class="fa-solid fa-map-location-dot"></i>
-                        </a>
                     </div>
                     <div class="flex gap-2 mt-2 border-t border-slate-200/50 pt-2">
-                        <a href="tel:${e.fone}" class="flex-1 bg-white border border-slate-200 text-slate-700 text-[11px] font-bold py-1.5 px-3 rounded-lg flex items-center justify-center gap-1.5 shadow-xs hover:bg-slate-50 active:scale-95">
+                        <a href="tel:${e.fone}" class="flex-1 bg-white border border-slate-200 text-slate-700 text-[11px] font-bold py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 shadow-xs hover:bg-slate-50 active:scale-95">
                             <i class="fa-solid fa-phone text-blue-600"></i> Ligar: ${e.foneDisplay}
                         </a>
-                        <a href="https://wa.me/${e.fone}" target="_blank" class="flex-1 bg-white border border-slate-200 text-slate-700 text-[11px] font-bold py-1.5 px-3 rounded-lg flex items-center justify-center gap-1.5 shadow-xs hover:bg-emerald-50 active:scale-95">
+                        <a href="https://wa.me/${e.fone}" target="_blank" class="flex-1 bg-white border border-slate-200 text-slate-700 text-[11px] font-bold py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 shadow-xs hover:bg-emerald-50 active:scale-95">
                             <i class="fa-brands fa-whatsapp text-emerald-600"></i> WhatsApp
                         </a>
                     </div>
@@ -752,10 +729,10 @@
                         <p class="text-[10px] text-slate-500 font-medium">${c.cargo}</p>
                     </div>
                     <div class="flex gap-2 border-t border-slate-200/50 pt-2">
-                        <a href="tel:${c.fone}" class="flex-1 bg-white border border-slate-200 text-slate-700 text-[10px] font-bold py-1.5 rounded-lg flex items-center justify-center gap-1 hover:bg-slate-50 active:scale-95">
+                        <a href="tel:${c.fone}" class="flex-1 bg-white border border-slate-200 text-slate-700 text-[10px] font-bold py-2 rounded-lg flex items-center justify-center gap-1 hover:bg-slate-50 active:scale-95">
                             <i class="fa-solid fa-phone text-blue-600"></i> Ligar
                         </a>
-                        <a href="https://wa.me/${c.fone}" target="_blank" class="flex-1 bg-white border border-slate-200 text-slate-700 text-[10px] font-bold py-1.5 rounded-lg flex items-center justify-center gap-1 hover:bg-emerald-50 active:scale-95">
+                        <a href="https://wa.me/${c.fone}" target="_blank" class="flex-1 bg-white border border-slate-200 text-slate-700 text-[10px] font-bold py-2 rounded-lg flex items-center justify-center gap-1 hover:bg-emerald-50 active:scale-95">
                             <i class="fa-brands fa-whatsapp text-emerald-600"></i> WhatsApp
                         </a>
                     </div>
@@ -770,16 +747,17 @@
                 <div class="w-12 h-1.5 bg-slate-300 rounded-full mx-auto mb-3 cursor-pointer" onclick="closeModal('modalEvento')"></div>
                 <div class="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
                     <i class="fa-solid fa-shirt text-navy text-xl"></i>
-                    <h3 class="text-sm font-extrabold text-navy-dark uppercase">Visualização de Uniforme</h3>
+                    <h3 class="text-sm font-extrabold text-navy-dark uppercase">Referência de Uniforme</h3>
                 </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
-                    <span class="bg-navy text-gold text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-widest">${codigo}</span>
-                    <h4 class="font-bold text-navy text-base mt-3">${nome}</h4>
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 text-center">
+                    <span class="bg-navy text-gold text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-widest">${codigo}</span>
+                    <h4 class="font-bold text-navy text-base mt-4">${nome}</h4>
                 </div>
             `;
             openModal('modalEvento');
         }
 
+        // RENDERIZAÇÃO PRINCIPAL DO CRONOGRAMA
         function renderSchedule() {
             const activeDay = schedule.find(s => s.date === activeTabDate);
             const listContainer = document.getElementById('eventsList');
@@ -793,7 +771,7 @@
                     badgeColor = "bg-yellow-100 text-amber-950 border border-yellow-200 font-extrabold";
                 }
 
-                // Ícones funcionais correspondentes
+                // Ícones funcionais correspondentes ao tipo de atividade militar/civil
                 let iconClass = "fa-solid fa-clock";
                 if (e.type === "trânsito") iconClass = "fa-solid fa-car-side";
                 if (e.type === "voo") iconClass = "fa-solid fa-plane-departure";
@@ -812,7 +790,7 @@
                         </div>
 
                         <!-- Cartão do Evento -->
-                        <div class="bg-slate-50 rounded-xl p-3 border border-slate-100 hover:border-navy/20 hover:shadow-md transition-all">
+                        <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-100 hover:border-navy/20 hover:shadow-md transition-all">
                             <div class="flex justify-between items-start mb-1.5">
                                 <span class="text-sm font-black text-navy tracking-tight flex items-center gap-1">
                                     <i class="fa-regular fa-clock text-navy/60 text-xs"></i> 
@@ -826,23 +804,20 @@
                             <h4 class="text-xs font-bold text-slate-800 leading-tight">${e.title}</h4>
                             
                             <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-200/40">
-                                <span class="text-[10px] text-slate-500 font-medium flex items-center gap-1 truncate max-w-[150px]">
+                                <a href="${getMapsLink(e.local, e.mapsQuery)}" target="_blank" onclick="event.stopPropagation();" class="text-[10px] text-slate-500 hover:text-navy hover:underline font-medium flex items-center gap-1 truncate max-w-[170px]">
                                     <i class="fa-solid fa-location-dot text-slate-400"></i> ${e.local}
-                                </span>
+                                </a>
                                 <div class="flex gap-1.5" onclick="event.stopPropagation();">
-                                    <a href="${getMapsLink(e.local, e.mapsQuery)}" target="_blank" class="p-1 bg-white hover:bg-slate-100 border border-slate-200 rounded text-navy hover:text-navy-light text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95">
-                                        <i class="fa-solid fa-map"></i> Mapa
-                                    </a>
                                     ${e.cardapioDownload ? `
-                                        <a href="${e.cardapioDownload}" download class="p-1 bg-amber-500 text-white hover:bg-amber-600 rounded text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95 font-bold">
+                                        <a href="${e.cardapioDownload}" download class="p-1 px-1.5 bg-amber-500 text-white hover:bg-amber-600 rounded text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95 font-bold">
                                             <i class="fa-solid fa-file-pdf"></i> Cardápio
                                         </a>
                                     ` : ''}
                                     ${e.flight ? `
-                                        <a href="${getFlightAwareLink(e.flight)}" target="_blank" class="p-1 bg-navy text-white hover:bg-navy-light rounded text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95 font-bold">
+                                        <a href="${getFlightAwareLink(e.flight)}" target="_blank" class="p-1 px-1.5 bg-navy text-white hover:bg-navy-light rounded text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95 font-bold">
                                             <i class="fa-solid fa-plane text-gold"></i> Radar
                                         </a>
-                                        <a href="${getAzulCheckinLink()}" target="_blank" class="p-1 bg-gold text-navy-dark hover:bg-gold-light rounded text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95 font-bold">
+                                        <a href="${getAzulCheckinLink()}" target="_blank" class="p-1 px-1.5 bg-gold text-navy-dark hover:bg-gold-light rounded text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95 font-bold">
                                             <i class="fa-solid fa-ticket"></i> Check-in
                                         </a>
                                     ` : ''}
@@ -874,7 +849,7 @@
             if (match) {
                 showUniformeDetalhado(match.nome, match.mbCodigo);
             } else {
-                showUniformeDetalhado(trajeNome, "Geral");
+                showUniformeDetalhado(trajeNome, "Uniforme 5.5 com Barretas");
             }
         }
 
@@ -942,14 +917,13 @@
                         <p class="text-xs text-slate-600 mt-2 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-100/70 italic">${eventObj.obs}</p>
                     </div>
 
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 flex justify-between items-center">
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 flex justify-between items-center">
                         <div class="truncate max-w-[240px]">
                             <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Local do Evento</p>
-                            <p class="text-xs font-bold text-slate-700 truncate">${eventObj.local}</p>
+                            <a href="${getMapsLink(eventObj.local, eventObj.mapsQuery)}" target="_blank" class="text-xs font-bold text-slate-700 hover:text-navy hover:underline block truncate mt-0.5">
+                                <i class="fa-solid fa-location-dot text-slate-400"></i> ${eventObj.local}
+                            </a>
                         </div>
-                        <a href="${getMapsLink(eventObj.local, eventObj.mapsQuery)}" target="_blank" class="bg-navy hover:bg-navy-light text-white p-2.5 rounded-xl text-xs flex items-center gap-1 shadow-sm">
-                            <i class="fa-solid fa-map-location-dot text-sm"></i>
-                        </a>
                     </div>
 
                     ${extraActionButtons}
@@ -959,35 +933,23 @@
             openModal('modalEvento');
         }
 
+        // ATUALIZADOR DO MARCADOR FLUTUANTE EM TEMPO REAL ("AGORA")
         function updateIndicator() {
             const indicator = document.getElementById('nowIndicator');
-            const simDateEl = document.getElementById('simDate');
-            const simTimeEl = document.getElementById('simTime');
-            const simulatorStatus = document.getElementById('simulatorStatus');
+            
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const checkDateStr = `${year}-${month}-${day}`;
+            const checkTimeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
-            let checkDateStr, checkTimeStr;
-            const useSim = simDateEl.value !== 'real';
-
-            if (useSim) {
-                checkDateStr = simDateEl.value;
-                checkTimeStr = simTimeEl.value;
-                simulatorStatus.textContent = "Simulado";
-                simulatorStatus.className = "text-[10px] font-bold bg-amber-500 text-white px-2 py-0.5 rounded animate-pulse";
-            } else {
-                const now = new Date();
-                const year = now.getFullYear();
-                const month = String(now.getMonth() + 1).padStart(2, '0');
-                const day = String(now.getDate()).padStart(2, '0');
-                checkDateStr = `${year}-${month}-${day}`;
-                checkTimeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-                simulatorStatus.textContent = "Tempo Real";
-                simulatorStatus.className = "text-[10px] font-bold bg-emerald-600 text-white px-2 py-0.5 rounded";
-            }
-
+            // Remove todos os anéis vermelhos ativos de cards prévios
             document.querySelectorAll('[id^="card-"]').forEach(card => {
                 card.querySelector('.bg-slate-50')?.classList.remove('ring-2', 'ring-red-600', 'bg-white');
             });
 
+            // Se o dia de hoje não corresponder ao dia da aba atual, desativa a linha de tempo "AGORA"
             if (checkDateStr !== activeTabDate) {
                 indicator.style.display = 'none';
                 return;
@@ -1010,6 +972,7 @@
             const minEventTime = toMinutes(sortedEvents[0].timeStart);
             const maxEventTime = toMinutes(sortedEvents[sortedEvents.length - 1].timeStart);
 
+            // Permite uma margem de exibição de até 1 hora antes e após o limite dos cronogramas
             if (currentMin < minEventTime - 60 || currentMin > maxEventTime + 60) {
                 indicator.style.display = 'none';
                 return;
@@ -1027,6 +990,7 @@
                 
                 if (!cardEl) continue;
 
+                // Destaca e posiciona o ponteiro caso o horário atual esteja contido no intervalo do evento
                 if (currentMin >= evMin && (i === sortedEvents.length - 1 || currentMin < toMinutes(sortedEvents[i + 1].timeStart))) {
                     const cardInner = cardEl.querySelector('.bg-slate-50');
                     if (cardInner) {
@@ -1058,20 +1022,20 @@
             indicator.style.top = `${targetTopY}px`;
         }
 
-        // ONLOAD INITIALIZATION
+        // INICIALIZAÇÃO DO WEB APP
         window.onload = function () {
+            // Seleciona a aba correta se a data atual estiver inclusa no cronograma
+            const todayStr = new Date().toISOString().split('T')[0];
+            if (schedule.some(s => s.date === todayStr)) {
+                activeTabDate = todayStr;
+            } else {
+                activeTabDate = "2026-07-10"; // Default: Foca na sexta-feira (Dia principal)
+            }
+
             setupLogisticsModals();
             renderSchedule();
 
-            document.getElementById('simDate').addEventListener('change', () => {
-                const val = document.getElementById('simDate').value;
-                if (val !== 'real') {
-                    activeTabDate = val;
-                }
-                renderSchedule();
-            });
-            document.getElementById('simTime').addEventListener('input', updateIndicator);
-
+            // Sincroniza a linha "AGORA" automaticamente a cada 15 segundos
             setInterval(updateIndicator, 15000);
         };
     </script>
