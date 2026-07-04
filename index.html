@@ -102,10 +102,8 @@
             <!-- Barra Superior do Header -->
             <div class="flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <!-- Brasão/Símbolo Simulado da Marinha -->
-                    <div class="bg-gold p-1.5 rounded-full flex items-center justify-center shadow-inner">
-                        <i class="fa-solid fa-anchor text-navy-dark text-lg"></i>
-                    </div>
+                    <!-- Brasão Oficial do 4º Distrito Naval -->
+                    <img src="brasao-4dn.png" alt="Brasão 4º DN" class="h-10 w-auto object-contain" onerror="this.onerror=null; this.outerHTML='<div class=&quot;bg-gold p-1.5 rounded-full flex items-center justify-center shadow-inner&quot;><i class=&quot;fa-solid fa-anchor text-navy-dark text-lg&quot;></i></div>';">
                     <div>
                         <h1 class="text-xs font-bold tracking-widest uppercase text-gold-light">Marinha do Brasil</h1>
                         <p class="text-[10px] font-medium tracking-wide text-slate-300">4º Distrito Naval • Belém/Marabá</p>
@@ -196,27 +194,32 @@
 
     <!-- BARRA DE ACESSO RÁPIDO INFERIOR (ESTILO BOTTOM BAR PARA MOBILE-FIRST) -->
     <div class="fixed bottom-0 left-0 right-0 bg-navy-dark text-white border-t-2 border-gold py-2.5 z-30 shadow-[0_-4px_10px_rgba(0,0,0,0.15)]">
-        <div class="max-w-md mx-auto px-6 flex justify-around items-center text-center">
+        <div class="max-w-md mx-auto px-2 grid grid-cols-4 gap-1 items-center text-center">
             
-            <button onclick="openModal('modalEstadia')" class="flex flex-col items-center gap-1 w-24 text-slate-300 hover:text-gold active:scale-90 transition-all">
-                <i class="fa-solid fa-hotel text-lg"></i>
+            <button onclick="openModal('modalEstadia')" class="flex flex-col items-center gap-1 text-slate-300 hover:text-gold active:scale-90 transition-all">
+                <i class="fa-solid fa-hotel text-base"></i>
                 <span class="text-[9px] font-bold uppercase tracking-wider">Estadia</span>
             </button>
 
-            <button onclick="openModal('modalUniformes')" class="flex flex-col items-center gap-1 w-24 text-slate-300 hover:text-gold active:scale-90 transition-all">
-                <i class="fa-solid fa-shirt text-lg"></i>
+            <button onclick="openModal('modalUniformes')" class="flex flex-col items-center gap-1 text-slate-300 hover:text-gold active:scale-90 transition-all">
+                <i class="fa-solid fa-shirt text-base"></i>
                 <span class="text-[9px] font-bold uppercase tracking-wider">Uniformes</span>
             </button>
 
-            <button onclick="openModal('modalContatos')" class="flex flex-col items-center gap-1 w-24 text-slate-300 hover:text-gold active:scale-90 transition-all">
-                <i class="fa-solid fa-address-book text-lg"></i>
+            <button onclick="openModal('modalContatos')" class="flex flex-col items-center gap-1 text-slate-300 hover:text-gold active:scale-90 transition-all">
+                <i class="fa-solid fa-address-book text-base"></i>
                 <span class="text-[9px] font-bold uppercase tracking-wider">Contatos</span>
+            </button>
+
+            <button onclick="openModal('modalArquivos')" class="flex flex-col items-center gap-1 text-slate-300 hover:text-gold active:scale-90 transition-all">
+                <i class="fa-solid fa-folder-open text-base"></i>
+                <span class="text-[9px] font-bold uppercase tracking-wider">Arquivos</span>
             </button>
 
         </div>
     </div>
 
-    <!-- MODAL: ESTADIA -->
+    <!-- MODAL: ESTADIA (APENAS HOTEL INÁCIO'S) -->
     <div id="modalEstadia" class="fixed inset-0 bg-black/60 z-50 flex items-end justify-center hidden" onclick="closeModalOnOutsideClick(event, 'modalEstadia')">
         <div class="bg-white w-full max-w-md rounded-t-3xl shadow-2xl bottom-sheet hidden-sheet flex flex-col max-h-[85vh]">
             <div class="w-12 h-1.5 bg-slate-300 rounded-full mx-auto my-3 cursor-pointer" onclick="closeModal('modalEstadia')"></div>
@@ -259,6 +262,62 @@
                 </div>
                 <div id="contatosContent" class="space-y-4">
                     <!-- Gerado Dinamicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: ARQUIVOS -->
+    <div id="modalArquivos" class="fixed inset-0 bg-black/60 z-50 flex items-end justify-center hidden" onclick="closeModalOnOutsideClick(event, 'modalArquivos')">
+        <div class="bg-white w-full max-w-md rounded-t-3xl shadow-2xl bottom-sheet hidden-sheet flex flex-col max-h-[85vh]">
+            <div class="w-12 h-1.5 bg-slate-300 rounded-full mx-auto my-3 cursor-pointer" onclick="closeModal('modalArquivos')"></div>
+            <div class="px-5 pb-6 overflow-y-auto">
+                <div class="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
+                    <i class="fa-solid fa-folder-open text-navy text-xl"></i>
+                    <h3 class="text-base font-bold text-navy-dark uppercase">Arquivos de Apoio</h3>
+                </div>
+                <div class="space-y-3">
+                    <!-- Opção 1: PowerPoint -->
+                    <a href="Apresentacao-MB-CAlte-Jose-Fabio.pptx" download class="flex items-center justify-between p-4 bg-slate-50 border border-slate-100 rounded-xl hover:bg-slate-100 transition-all active:scale-[0.98]">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-orange-100 p-2.5 rounded-lg text-orange-600">
+                                <i class="fa-solid fa-file-powerpoint text-xl"></i>
+                            </div>
+                            <div class="text-left">
+                                <h4 class="font-bold text-slate-800 text-xs">Apresentação PowerPoint</h4>
+                                <p class="text-[10px] text-slate-400">Apresentacao-MB-CAlte-Jose-Fabio.pptx</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-download text-slate-400 text-sm"></i>
+                    </a>
+
+                    <!-- Opção 2: PDF -->
+                    <a href="Apresentacao-MB-CAlte-Jose-Fabio.pdf" download class="flex items-center justify-between p-4 bg-slate-50 border border-slate-100 rounded-xl hover:bg-slate-100 transition-all active:scale-[0.98]">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-red-100 p-2.5 rounded-lg text-red-600">
+                                <i class="fa-solid fa-file-pdf text-xl"></i>
+                            </div>
+                            <div class="text-left">
+                                <h4 class="font-bold text-slate-800 text-xs">Apresentação PDF</h4>
+                                <p class="text-[10px] text-slate-400">Apresentacao-MB-CAlte-Jose-Fabio.pdf</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-download text-slate-400 text-sm"></i>
+                    </a>
+
+                    <!-- Opção 3: Vídeos -->
+                    <a href="Videos-MB.zip" download class="flex items-center justify-between p-4 bg-slate-50 border border-slate-100 rounded-xl hover:bg-slate-100 transition-all active:scale-[0.98]">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-blue-100 p-2.5 rounded-lg text-blue-600">
+                                <i class="fa-solid fa-file-video text-xl"></i>
+                            </div>
+                            <div class="text-left">
+                                <h4 class="font-bold text-slate-800 text-xs">Vídeos da Apresentação</h4>
+                                <p class="text-[10px] text-slate-400">Videos-MB.zip</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-download text-slate-400 text-sm"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -343,12 +402,13 @@
                         id: "09.7",
                         timeStart: "18:00",
                         timeEnd: "",
-                        title: "Jantar Oficial",
-                        local: "Restaurante Parmeggio",
+                        title: "Jantar",
+                        local: "Hotel Inácio's",
                         traje: "Passeio",
-                        obs: "Sugestão no Partage Shopping Marabá. O restaurante também oferece refeições à la carte via serviço de quarto direto no Inácio's Plaza Hotel.",
+                        obs: "Jantar servido na acomodação ou no salão do hotel. Consulte o cardápio disponível.",
                         type: "refeição",
-                        mapsQuery: "Partage Shopping Marabá"
+                        mapsQuery: "Inacio's Plaza Hotel Marabá",
+                        cardapioDownload: "cardapio.pdf"
                     },
                     {
                         id: "09.8",
@@ -604,22 +664,22 @@
         }
 
         // Função para gerar o link correto do FlightAware com o código limpo
-    function getFlightAwareLink(flightCode) {
-        const cleanCode = flightCode.replace(/\s+/g, '');
-        let formattedCode = cleanCode;
-        if (cleanCode.startsWith('AD')) {
-            formattedCode = 'AZU' + cleanCode.substring(2);
+        function getFlightAwareLink(flightCode) {
+            const cleanCode = flightCode.replace(/\s+/g, '');
+            let formattedCode = cleanCode;
+            if (cleanCode.startsWith('AD')) {
+                formattedCode = 'AZU' + cleanCode.substring(2);
+            }
+            return `https://flightaware.com/live/flight/${formattedCode}`;
         }
-        return `https://flightaware.com/live/flight/${formattedCode}`;
-    }
 
-    // Função para gerar o link de check-in oficial da empresa Azul
-    function getAzulCheckinLink() {
-        return `https://www.voeazul.com.br/br/pt/home/azulwebcheckin`;
-    }
+        // Link de Check-in Azul (atualizado conforme instrução)
+        function getAzulCheckinLink() {
+            return `https://www.voeazul.com.br/br/pt/home/azulwebcheckin`;
+        }
 
-    // MODAIS CONTROLADORES (BOTTOM-SHEET)
-    function openModal(id) {
+        // MODAIS CONTROLADORES (BOTTOM-SHEET)
+        function openModal(id) {
             const modal = document.getElementById(id);
             modal.classList.remove('hidden');
             document.body.classList.add('overflow-hidden');
@@ -674,7 +734,7 @@
                 </div>
             `).join('');
 
-            // 2. Uniformes (Apenas Listagem Título/Código, Sem Descrição)
+            // 2. Uniformes
             const uniDiv = document.getElementById('uniformesContent');
             uniDiv.innerHTML = logistics.uniformes.map(u => `
                 <div class="p-3.5 bg-slate-50 border border-slate-100 rounded-xl flex justify-between items-center cursor-pointer hover:bg-slate-100 transition-all" onclick="showUniformeDetalhado('${u.nome}', '${u.mbCodigo}')">
@@ -703,7 +763,7 @@
             `).join('');
         }
 
-        // Exibe detalhes específicos de uniformes na modal individual (Apenas Título e Categoria/Código)
+        // Exibe detalhes específicos de uniformes na modal individual
         function showUniformeDetalhado(nome, codigo) {
             const body = document.getElementById('eventoModalBody');
             body.innerHTML = `
@@ -766,13 +826,18 @@
                             <h4 class="text-xs font-bold text-slate-800 leading-tight">${e.title}</h4>
                             
                             <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-200/40">
-                                <span class="text-[10px] text-slate-500 font-medium flex items-center gap-1 truncate max-w-[180px]">
+                                <span class="text-[10px] text-slate-500 font-medium flex items-center gap-1 truncate max-w-[150px]">
                                     <i class="fa-solid fa-location-dot text-slate-400"></i> ${e.local}
                                 </span>
                                 <div class="flex gap-1.5" onclick="event.stopPropagation();">
                                     <a href="${getMapsLink(e.local, e.mapsQuery)}" target="_blank" class="p-1 bg-white hover:bg-slate-100 border border-slate-200 rounded text-navy hover:text-navy-light text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95">
                                         <i class="fa-solid fa-map"></i> Mapa
                                     </a>
+                                    ${e.cardapioDownload ? `
+                                        <a href="${e.cardapioDownload}" download class="p-1 bg-amber-500 text-white hover:bg-amber-600 rounded text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95 font-bold">
+                                            <i class="fa-solid fa-file-pdf"></i> Cardápio
+                                        </a>
+                                    ` : ''}
                                     ${e.flight ? `
                                         <a href="${getFlightAwareLink(e.flight)}" target="_blank" class="p-1 bg-navy text-white hover:bg-navy-light rounded text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95 font-bold">
                                             <i class="fa-solid fa-plane text-gold"></i> Radar
@@ -837,6 +902,16 @@
                         </a>
                         <a href="${getAzulCheckinLink()}" target="_blank" class="w-full bg-gold hover:bg-gold-light text-navy-dark text-xs font-extrabold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm">
                             <i class="fa-solid fa-passport"></i> Efetuar Check-in (Azul)
+                        </a>
+                    </div>
+                `;
+            }
+
+            if (eventObj.cardapioDownload) {
+                extraActionButtons += `
+                    <div class="flex flex-col gap-2 mt-4">
+                        <a href="${eventObj.cardapioDownload}" download class="w-full bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm">
+                            <i class="fa-solid fa-file-pdf text-white"></i> Baixar Cardápio (.PDF)
                         </a>
                     </div>
                 `;
