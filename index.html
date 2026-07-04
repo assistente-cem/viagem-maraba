@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Marinha do Brasil - Programa de Eventos</title>
+    <!-- Tailwind CSS para estilização moderna e ágil -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter para legibilidade militar limpa -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome para ícones militares, navegação e contato -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Configuração de cores personalizadas do Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            DEFAULT: '#002D5E',
+                            dark: '#001D3D',
+                            light: '#0A4B8F',
+                        },
+                        gold: {
+                            DEFAULT: '#FFBD26',
+                            dark: '#D99B0F',
+                            light: '#FFE194',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Estilos customizados adicionais para animações e refinamento visual -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Slate-50 */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Animação pulsante para o indicador de tempo "AGORA" */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .pulse-indicator {
+            animation: pulse-ring 2s infinite ease-in-out;
+        }
+
+        /* Esconder barra de rolagem horizontal mantendo funcionalidade */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Efeito de desfoque de vidro (Glassmorphism) */
+        .glass-header {
+            background: rgba(0, 29, 61, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Efeito de transição suave para modais de deslizar (bottom-sheet) */
+        .bottom-sheet {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bottom-sheet.hidden-sheet {
+            transform: translateY(100%);
+        }
+        .bottom-sheet.show-sheet {
+            transform: translateY(0%);
+        }
+
+        /* Linha pontilhada estilizada para a linha do tempo */
+        .timeline-line {
+            background: repeating-linear-gradient(
+                to bottom,
+                #002D5E,
+                #002D5E 6px,
+                transparent 6px,
+                transparent 12px
+            );
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen pb-24">
+
+    <!-- HEADER MILITAR PREMIUM -->
+    <header class="glass-header sticky top-0 z-40 text-white border-b-4 border-gold shadow-lg">
+        <div class="max-w-md mx-auto px-4 py-3 flex flex-col gap-2">
+            
+            <!-- Barra Superior do Header -->
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <!-- Brasão/Símbolo Simulado da Marinha -->
+                    <div class="bg-gold p-1.5 rounded-full flex items-center justify-center shadow-inner">
+                        <i class="fa-solid fa-anchor text-navy-dark text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xs font-bold tracking-widest uppercase text-gold-light">Marinha do Brasil</h1>
+                        <p class="text-[10px] font-medium tracking-wide text-slate-300">4º Distrito Naval • Belém/Marabá</p>
+                    </div>
+                </div>
+                <!-- Badge de Status de Viagem -->
+                <div class="flex flex-col items-end">
+                    <span class="bg-emerald-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1">
+                        <span class="h-1.5 w-1.5 rounded-full bg-white animate-pulse"></span> Viagem Oficial
+                    </span>
+                    <span class="text-[9px] text-slate-400 mt-0.5">Fuso P (Local)</span>
+                </div>
+            </div>
+
+            <!-- Título do Itinerário -->
+            <div class="mt-1">
+                <h2 class="text-sm font-extrabold text-white tracking-wide uppercase">Operação Carimbó - Projeto Rondon</h2>
+                <p class="text-xs text-slate-300">Viagem de Comitiva à Marabá-PA</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTAINER PRINCIPAL -->
+    <main class="max-w-md mx-auto px-4 mt-4">
+
+        <!-- SIMULADOR DE TEMPO (EXCLUSIVO PARA TESTAR A LINHA "AGORA" EM QUALQUER DATA) -->
+        <div class="bg-white rounded-xl p-3 border border-slate-200 shadow-sm mb-4">
+            <div class="flex justify-between items-center mb-1">
+                <span class="text-[11px] font-semibold text-slate-500 flex items-center gap-1">
+                    <i class="fa-solid fa-circle-info text-navy"></i> Simulador de Tempo Operacional
+                </span>
+                <span id="simulatorStatus" class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-0.5 rounded">Tempo Real</span>
+            </div>
+            <div class="flex flex-col gap-2">
+                <div class="flex items-center gap-2">
+                    <select id="simDate" class="flex-1 bg-slate-50 border border-slate-300 text-xs rounded-lg p-1.5 focus:ring-navy focus:border-navy text-slate-700 font-medium">
+                        <option value="real">Utilizar Hora do Sistema</option>
+                        <option value="2026-07-09">09 JUL 2026 (Quinta)</option>
+                        <option value="2026-07-10" selected>10 JUL 2026 (Sexta)</option>
+                        <option value="2026-07-11">11 JUL 2026 (Sábado)</option>
+                    </select>
+                    <input type="time" id="simTime" value="09:30" class="w-24 bg-slate-50 border border-slate-300 text-xs rounded-lg p-1.5 focus:ring-navy focus:border-navy text-slate-700 font-medium">
+                </div>
+                <p class="text-[9px] text-slate-400 text-center italic">Como o evento real ocorre em Julho de 2026, use o simulador para mover a linha "AGORA" e testar!</p>
+            </div>
+        </div>
+
+        <!-- ABAS DE NAVEGAÇÃO DOS DIAS (TABS) -->
+        <nav class="flex gap-2 mb-4 bg-slate-100 p-1 rounded-xl shadow-inner border border-slate-200/60">
+            <button onclick="switchTab('2026-07-09')" id="tab-2026-07-09" class="tab-btn flex-1 py-2.5 rounded-lg text-xs font-bold transition-all flex flex-col items-center justify-center gap-0.5 text-slate-500 hover:text-navy">
+                <span>QUI</span>
+                <span class="text-[10px] opacity-85">09 JUL</span>
+            </button>
+            <button onclick="switchTab('2026-07-10')" id="tab-2026-07-10" class="tab-btn flex-1 py-2.5 rounded-lg text-xs font-bold transition-all flex flex-col items-center justify-center gap-0.5 text-slate-500 hover:text-navy">
+                <span>SEX</span>
+                <span class="text-[10px] opacity-85">10 JUL</span>
+            </button>
+            <button onclick="switchTab('2026-07-11')" id="tab-2026-07-11" class="tab-btn flex-1 py-2.5 rounded-lg text-xs font-bold transition-all flex flex-col items-center justify-center gap-0.5 text-slate-500 hover:text-navy">
+                <span>SÁB</span>
+                <span class="text-[10px] opacity-85">11 JUL</span>
+            </button>
+        </nav>
+
+        <!-- TIMELINE CONTAINER -->
+        <section class="relative bg-white rounded-2xl p-4 shadow-md border border-slate-100 min-h-[400px]">
+            
+            <!-- LINHA DE TEMPO DE FUNDO -->
+            <div class="absolute left-6 top-6 bottom-6 w-0.5 timeline-line opacity-20"></div>
+
+            <!-- INDICADOR FLUTUANTE "AGORA" (LINHA VERMELHA) -->
+            <div id="nowIndicator" class="absolute left-0 right-0 z-10 flex items-center pointer-events-none transition-all duration-500" style="display: none; top: 0px;">
+                <!-- Marcador de Texto Vermelho -->
+                <div class="bg-red-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow-md ml-1 flex items-center gap-1 pulse-indicator">
+                    <span class="h-1 w-1 rounded-full bg-white"></span> AGORA
+                </div>
+                <!-- Linha Vermelha de Demarcação -->
+                <div class="flex-grow h-0.5 bg-red-600 shadow-[0_0_8px_rgba(220,38,38,0.7)]"></div>
+            </div>
+
+            <!-- CONTEÚDO DOS EVENTOS (RERENDERIZADOS VIA JS) -->
+            <div id="eventsList" class="relative space-y-6">
+                <!-- Injetado dinamicamente -->
+            </div>
+            
+        </section>
+
+    </main>
+
+    <!-- BARRA DE ACESSO RÁPIDO INFERIOR (ESTILO BOTTOM BAR PARA MOBILE-FIRST) -->
+    <div class="fixed bottom-0 left-0 right-0 bg-navy-dark text-white border-t-2 border-gold py-2.5 z-30 shadow-[0_-4px_10px_rgba(0,0,0,0.15)]">
+        <div class="max-w-md mx-auto px-6 flex justify-around items-center text-center">
+            
+            <button onclick="openModal('modalEstadia')" class="flex flex-col items-center gap-1 w-24 text-slate-300 hover:text-gold active:scale-90 transition-all">
+                <i class="fa-solid fa-hotel text-lg"></i>
+                <span class="text-[9px] font-bold uppercase tracking-wider">Estadia</span>
+            </button>
+
+            <button onclick="openModal('modalUniformes')" class="flex flex-col items-center gap-1 w-24 text-slate-300 hover:text-gold active:scale-90 transition-all">
+                <i class="fa-solid fa-shirt text-lg"></i>
+                <span class="text-[9px] font-bold uppercase tracking-wider">Uniformes</span>
+            </button>
+
+            <button onclick="openModal('modalContatos')" class="flex flex-col items-center gap-1 w-24 text-slate-300 hover:text-gold active:scale-90 transition-all">
+                <i class="fa-solid fa-address-book text-lg"></i>
+                <span class="text-[9px] font-bold uppercase tracking-wider">Contatos</span>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- MODAL: ESTADIA -->
+    <div id="modalEstadia" class="fixed inset-0 bg-black/60 z-50 flex items-end justify-center hidden" onclick="closeModalOnOutsideClick(event, 'modalEstadia')">
+        <div class="bg-white w-full max-w-md rounded-t-3xl shadow-2xl bottom-sheet hidden-sheet flex flex-col max-h-[85vh]">
+            <div class="w-12 h-1.5 bg-slate-300 rounded-full mx-auto my-3 cursor-pointer" onclick="closeModal('modalEstadia')"></div>
+            <div class="px-5 pb-5 overflow-y-auto">
+                <div class="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
+                    <i class="fa-solid fa-hotel text-navy text-xl"></i>
+                    <h3 class="text-base font-bold text-navy-dark uppercase">Hospedagem & Apoio</h3>
+                </div>
+                <div id="estadiaContent" class="space-y-4">
+                    <!-- Gerado Dinamicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: UNIFORMES -->
+    <div id="modalUniformes" class="fixed inset-0 bg-black/60 z-50 flex items-end justify-center hidden" onclick="closeModalOnOutsideClick(event, 'modalUniformes')">
+        <div class="bg-white w-full max-w-md rounded-t-3xl shadow-2xl bottom-sheet hidden-sheet flex flex-col max-h-[85vh]">
+            <div class="w-12 h-1.5 bg-slate-300 rounded-full mx-auto my-3 cursor-pointer" onclick="closeModal('modalUniformes')"></div>
+            <div class="px-5 pb-5 overflow-y-auto">
+                <div class="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
+                    <i class="fa-solid fa-shirt text-navy text-xl"></i>
+                    <h3 class="text-base font-bold text-navy-dark uppercase">Tipos de Uniformes</h3>
+                </div>
+                <div id="uniformesContent" class="space-y-3">
+                    <!-- Gerado Dinamicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: CONTATOS -->
+    <div id="modalContatos" class="fixed inset-0 bg-black/60 z-50 flex items-end justify-center hidden" onclick="closeModalOnOutsideClick(event, 'modalContatos')">
+        <div class="bg-white w-full max-w-md rounded-t-3xl shadow-2xl bottom-sheet hidden-sheet flex flex-col max-h-[85vh]">
+            <div class="w-12 h-1.5 bg-slate-300 rounded-full mx-auto my-3 cursor-pointer" onclick="closeModal('modalContatos')"></div>
+            <div class="px-5 pb-5 overflow-y-auto">
+                <div class="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
+                    <i class="fa-solid fa-address-book text-navy text-xl"></i>
+                    <h3 class="text-base font-bold text-navy-dark uppercase">Contatos de Emergência & Apoio</h3>
+                </div>
+                <div id="contatosContent" class="space-y-4">
+                    <!-- Gerado Dinamicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DETALHE DE EVENTO INDIVIDUAL -->
+    <div id="modalEvento" class="fixed inset-0 bg-black/60 z-50 flex items-end justify-center hidden" onclick="closeModalOnOutsideClick(event, 'modalEvento')">
+        <div class="bg-white w-full max-w-md rounded-t-3xl shadow-2xl bottom-sheet hidden-sheet flex flex-col max-h-[85vh]">
+            <div class="w-12 h-1.5 bg-slate-300 rounded-full mx-auto my-3 cursor-pointer" onclick="closeModal('modalEvento')"></div>
+            <div class="px-5 pb-6 overflow-y-auto" id="eventoModalBody">
+                <!-- Preenchido dinamicamente ao clicar no cartão -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // BASE DE DADOS OFICIAIS (CRONOGRAMA CORRIGIDO E FORMATADO)
+        const schedule = [
+            {
+                date: "2026-07-09",
+                dayLabel: "09 JUL",
+                dayOfWeek: "Quinta-feira",
+                events: [
+                    {
+                        id: "09.1",
+                        timeStart: "11:00",
+                        timeEnd: "",
+                        title: "Deslocamento para o Aeroporto Internacional de Belém",
+                        local: "Trânsito",
+                        traje: "Passeio",
+                        obs: "Deslocamento terrestre preliminar rumo ao terminal aeroportuário de Belém (Val-de-Cans).",
+                        type: "trânsito",
+                        mapsQuery: "Aeroporto Internacional de Belém Val de Cans"
+                    },
+                    {
+                        id: "09.2",
+                        timeStart: "13:20",
+                        timeEnd: "",
+                        title: "Decolagem do Voo AZUL 4460",
+                        local: "Aeroporto de Belém",
+                        traje: "Passeio",
+                        obs: "Voo AZUL AD 4460 BEL (13h05) x MAB (14h10). Atenção ao horário de embarque.",
+                        type: "voo",
+                        flight: "AD4460",
+                        airline: "Azul",
+                        mapsQuery: "Aeroporto Internacional de Belém Val de Cans"
+                    },
+                    {
+                        id: "09.3",
+                        timeStart: "14:25",
+                        timeEnd: "",
+                        title: "Chegada ao Aeroporto de Marabá-PA",
+                        local: "Aeroporto de Marabá",
+                        traje: "Passeio",
+                        obs: "Desembarque, retirada de bagagens e coordenação com a recepção.",
+                        type: "chegada",
+                        mapsQuery: "Aeroporto de Marabá SBMA"
+                    },
+                    {
+                        id: "09.5",
+                        timeStart: "14:37",
+                        timeEnd: "",
+                        title: "Deslocamento para o Hotel",
+                        local: "Trânsito",
+                        traje: "Passeio",
+                        obs: "Tempo estimado de trânsito terrestre: 12 minutos.",
+                        type: "trânsito",
+                        mapsQuery: "Marabá"
+                    },
+                    {
+                        id: "09.6",
+                        timeStart: "14:45",
+                        timeEnd: "",
+                        title: "Check-In no Hotel",
+                        local: "Inácio's Plaza Hotel",
+                        traje: "Passeio",
+                        obs: "Alojamento e conferência de materiais da comitiva oficial.",
+                        type: "hotel",
+                        mapsQuery: "Inacio's Plaza Hotel Marabá"
+                    },
+                    {
+                        id: "09.7",
+                        timeStart: "18:00",
+                        timeEnd: "",
+                        title: "Jantar Oficial",
+                        local: "Restaurante Parmeggio",
+                        traje: "Passeio",
+                        obs: "Sugestão no Partage Shopping Marabá. O restaurante também oferece refeições à la carte via serviço de quarto direto no Inácio's Plaza Hotel.",
+                        type: "refeição",
+                        mapsQuery: "Partage Shopping Marabá"
+                    },
+                    {
+                        id: "09.8",
+                        timeStart: "20:00",
+                        timeEnd: "",
+                        title: "Retorno para o Hotel",
+                        local: "Trânsito",
+                        traje: "Passeio",
+                        obs: "Trânsito terrestre de volta ao hotel de pernoite. Tempo estimado: 3 minutos.",
+                        type: "trânsito",
+                        mapsQuery: "Inacio's Plaza Hotel Marabá"
+                    }
+                ]
+            },
+            {
+                date: "2026-07-10",
+                dayLabel: "10 JUL",
+                dayOfWeek: "Sexta-feira",
+                events: [
+                    {
+                        id: "30.1",
+                        timeStart: "07:00",
+                        timeEnd: "",
+                        title: "Café da Manhã",
+                        local: "Inácio's Plaza Hotel",
+                        traje: "5.5",
+                        obs: "Café da manhã de serviço.",
+                        type: "refeição",
+                        mapsQuery: "Inacio's Plaza Hotel Marabá"
+                    },
+                    {
+                        id: "30.2",
+                        timeStart: "07:40",
+                        timeEnd: "",
+                        title: "Deslocamento para o 52º Batalhão de Infantaria de Selva (52º BIS)",
+                        local: "Trânsito",
+                        traje: "5.5",
+                        obs: "Transporte operado pela equipe terceirizada do Ministério da Defesa.",
+                        type: "trânsito",
+                        mapsQuery: "52º Batalhão de Infantaria de Selva Marabá"
+                    },
+                    {
+                        id: "30.3",
+                        timeStart: "08:00",
+                        timeEnd: "08:30",
+                        title: "Sessão de Foto Oficial",
+                        local: "Pátio do 52º BIS",
+                        traje: "5.5",
+                        obs: "Registro oficial fotográfico da comitiva nacional do Projeto Rondon. Tempo médio de deslocamento do hotel até a sede: 9 minutos.",
+                        type: "militar",
+                        mapsQuery: "52º Batalhão de Infantaria de Selva Marabá"
+                    },
+                    {
+                        id: "30.4",
+                        timeStart: "08:30",
+                        timeEnd: "10:30",
+                        title: "Formatura Militar com Apronto Operacional",
+                        local: "Pátio do 52º BIS",
+                        traje: "5.5",
+                        obs: "Cerimônia de formatura militar e alinhamento tático de prontidão das equipes.",
+                        type: "militar",
+                        mapsQuery: "52º Batalhão de Infantaria de Selva Marabá"
+                    },
+                    {
+                        id: "30.5",
+                        timeStart: "10:45",
+                        timeEnd: "11:45",
+                        title: "Apresentação da Operação Carimbó",
+                        local: "COP-52º BIS",
+                        traje: "5.5",
+                        obs: "Briefing oficial da 100ª operação da história do programa nacional no COP-52º BIS.",
+                        type: "militar",
+                        mapsQuery: "52º Batalhão de Infantaria de Selva Marabá"
+                    },
+                    {
+                        id: "30.6a",
+                        timeStart: "11:45",
+                        timeEnd: "13:00",
+                        title: "Almoço da Comitiva",
+                        local: "52º BIS",
+                        traje: "5.5",
+                        obs: "Almoço tático no refeitório de oficiais das instalações militares.",
+                        type: "refeição",
+                        mapsQuery: "52º Batalhão de Infantaria de Selva Marabá"
+                    },
+                    {
+                        id: "30.6b",
+                        timeStart: "14:00",
+                        timeEnd: "14:10",
+                        title: "Recepção de Autoridades / Leitura das Nominatas",
+                        local: "Carajás Centro de Convenções",
+                        traje: "5.5",
+                        obs: "Localizado na BR-222, Vila Militar Pres. Médici. Recepção solene.",
+                        type: "cerimônia",
+                        mapsQuery: "Carajás Centro de Convenções Leonildo Borges Rocha"
+                    },
+                    {
+                        id: "30.7",
+                        timeStart: "14:00",
+                        timeEnd: "14:15",
+                        title: "Início da Cerimônia de Abertura",
+                        local: "Carajás Centro de Convenções",
+                        traje: "5.5",
+                        obs: "Início formal do ato solene de abertura da Operação Carimbó.",
+                        type: "cerimônia",
+                        mapsQuery: "Carajás Centro de Convenções Leonildo Borges Rocha"
+                    },
+                    {
+                        id: "30.8",
+                        timeStart: "14:15",
+                        timeEnd: "14:30",
+                        title: "Palestra sobre o Ministério da Defesa",
+                        local: "Carajás Centro de Convenções",
+                        traje: "5.5",
+                        obs: "Palestra institucional. Obs: Almoço associado foi por adesão, sob convite do CPMA-01.",
+                        type: "palestra",
+                        mapsQuery: "Carajás Centro de Convenções Leonildo Borges Rocha"
+                    },
+                    {
+                        id: "30.9",
+                        timeStart: "14:30",
+                        timeEnd: "14:50",
+                        title: "Palestra sobre a Marinha do Brasil",
+                        local: "Carajás Centro de Convenções",
+                        traje: "5.5",
+                        obs: "Apresentação da MB. Momento de entrega do Medalhão do Centenário do Ministério Público Militar ao Excelentíssimo Presidente José Sarney.",
+                        type: "palestra",
+                        mapsQuery: "Carajás Centro de Convenções Leonildo Borges Rocha"
+                    },
+                    {
+                        id: "30.10",
+                        timeStart: "14:50",
+                        timeEnd: "15:10",
+                        title: "Palestra sobre o Exército Brasileiro",
+                        local: "Carajás Centro de Convenções",
+                        traje: "5.5",
+                        obs: "Apresentação estratégica sobre a atuação e capilaridade do Exército Brasileiro.",
+                        type: "palestra",
+                        mapsQuery: "Carajás Centro de Convenções Leonildo Borges Rocha"
+                    },
+                    {
+                        id: "30.11",
+                        timeStart: "15:10",
+                        timeEnd: "15:20",
+                        title: "Palestra sobre a Força Aérea Brasileira",
+                        local: "Carajás Centro de Convenções",
+                        traje: "5.5",
+                        obs: "Apresentação sobre o papel da FAB na Operação e vigilância de fronteira.",
+                        type: "palestra",
+                        mapsQuery: "Carajás Centro de Convenções Leonildo Borges Rocha"
+                    },
+                    {
+                        id: "30.12",
+                        timeStart: "15:20",
+                        timeEnd: "17:07",
+                        title: "Solenidade Literária, Coffee Break & Apresentação",
+                        local: "Carajás Centro de Convenções",
+                        traje: "5.5",
+                        obs: "Entrega oficial do livro 'Rondon, o Marechal da Paz' aos governos e prefeituras. Selo Comemorativo ao Dr. Maurício. Intervalo de coffee break e apresentação de equipes rondonistas.",
+                        type: "cerimônia",
+                        mapsQuery: "Carajás Centro de Convenções Leonildo Borges Rocha"
+                    },
+                    {
+                        id: "30.13",
+                        timeStart: "17:10",
+                        timeEnd: "",
+                        title: "Encerramento Oficial da Cerimônia",
+                        local: "Carajás Centro de Convenções",
+                        traje: "5.5",
+                        obs: "Conclusão das atividades protocolares do dia.",
+                        type: "cerimônia",
+                        mapsQuery: "Carajás Centro de Convenções Leonildo Borges Rocha"
+                    }
+                ]
+            },
+            {
+                date: "2026-07-11",
+                dayLabel: "11 JUL",
+                dayOfWeek: "Sábado",
+                events: [
+                    {
+                        id: "11.1",
+                        timeStart: "03:00",
+                        timeEnd: "",
+                        title: "Deslocamento para o Aeroporto Marabá-PA",
+                        local: "Trânsito",
+                        traje: "Passeio",
+                        obs: "Preparação antecipada e deslocamento terrestre para o embarque de retorno oficial.",
+                        type: "trânsito",
+                        mapsQuery: "Aeroporto de Marabá SBMA"
+                    },
+                    {
+                        id: "11.2",
+                        timeStart: "04:25",
+                        timeEnd: "",
+                        title: "Decolagem do Voo AZUL 4113",
+                        local: "Aeroporto de Marabá",
+                        traje: "Passeio",
+                        obs: "Voo AZUL AD 4113 MAB (04h25) x BEL (05h30). Conexão direta.",
+                        type: "voo",
+                        flight: "AD4113",
+                        airline: "Azul",
+                        mapsQuery: "Aeroporto de Marabá SBMA"
+                    },
+                    {
+                        id: "11.3",
+                        timeStart: "05:30",
+                        timeEnd: "",
+                        title: "Pouso e Chegada a Belém-PA",
+                        local: "Aeroporto Internacional de Belém",
+                        traje: "Passeio",
+                        obs: "Desembarque da comitiva oficial no Aeroporto Internacional Val-de-Cans.",
+                        type: "chegada",
+                        mapsQuery: "Aeroporto Internacional de Belém Val de Cans"
+                    },
+                    {
+                        id: "11.4",
+                        timeStart: "14:37",
+                        timeEnd: "",
+                        title: "Deslocamento Finais para Residência",
+                        local: "Trânsito",
+                        traje: "Passeio",
+                        obs: "Encerramento e desmobilização final das viaturas de apoio.",
+                        type: "trânsito",
+                        mapsQuery: "Belém"
+                    }
+                ]
+            }
+        ];
+
+        const logistics = {
+            estadia: [
+                { hotel: "Inácio's Plaza Hotel (Exclusivo)", localizacao: "Av. Sete de Setembro, 2038 - Novo Horizonte, Marabá-PA", fone: "559433112200", foneDisplay: "(94) 3311-2200" }
+            ],
+            uniformes: [
+                { nome: "Traje Passeio", mbCodigo: "Civil / Esporte Fino" },
+                { nome: "Uniforme 5.5", mbCodigo: "Oficiais (Caqui de Serviço)" }
+            ],
+            contatos: [
+                { nome: "1º Tenente José Renato (Assistente)", cargo: "Coordenação Geral e Cerimonial", fone: "5591999991234", foneDisplay: "(91) 99999-1234" },
+                { nome: "Coordenação do Ministério da Defesa", cargo: "Logística Terrestre / Transportes", fone: "5561988884321", foneDisplay: "(61) 98888-4321" },
+                { nome: "Recepção Inácio's Plaza Hotel", cargo: "Suporte de Hospedagem & Quarto", fone: "559433112200", foneDisplay: "(94) 3311-2200" }
+            ]
+        };
+
+        // Estado inicial de exibição de data da timeline
+        let activeTabDate = "2026-07-10"; // Default: foca no dia mais carregado para o preview inicial
+
+        // Função para mapear locais para queries detalhadas do Google Maps focadas na região
+        function getMapsLink(loc, customQuery) {
+            const query = customQuery || loc;
+            return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query + ", Pará, Brasil")}`;
+        }
+
+        // Função para gerar o link correto do FlightAware com o código limpo
+    function getFlightAwareLink(flightCode) {
+        const cleanCode = flightCode.replace(/\s+/g, '');
+        let formattedCode = cleanCode;
+        if (cleanCode.startsWith('AD')) {
+            formattedCode = 'AZU' + cleanCode.substring(2);
+        }
+        return `https://flightaware.com/live/flight/${formattedCode}`;
+    }
+
+    // Função para gerar o link de check-in oficial da empresa Azul
+    function getAzulCheckinLink() {
+        return `https://www.voeazul.com.br/br/pt/home/azulwebcheckin`;
+    }
+
+    // MODAIS CONTROLADORES (BOTTOM-SHEET)
+    function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+            setTimeout(() => {
+                const sheet = modal.querySelector('.bottom-sheet');
+                sheet.classList.remove('hidden-sheet');
+                sheet.classList.add('show-sheet');
+            }, 10);
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            const sheet = modal.querySelector('.bottom-sheet');
+            sheet.classList.remove('show-sheet');
+            sheet.classList.add('hidden-sheet');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            }, 350);
+        }
+
+        function closeModalOnOutsideClick(event, id) {
+            const modal = document.getElementById(id);
+            const sheet = modal.querySelector('.bottom-sheet');
+            if (!sheet.contains(event.target) && event.target === modal) {
+                closeModal(id);
+            }
+        }
+
+        function setupLogisticsModals() {
+            // 1. Estadia
+            const estDiv = document.getElementById('estadiaContent');
+            estDiv.innerHTML = logistics.estadia.map(e => `
+                <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex flex-col gap-2">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-navy text-sm flex items-center gap-1.5"><i class="fa-solid fa-hotel text-gold"></i> ${e.hotel}</h4>
+                            <p class="text-[10px] text-slate-500 mt-1">${e.localizacao}</p>
+                        </div>
+                        <a href="${getMapsLink(e.hotel, e.hotel)}" target="_blank" class="bg-navy hover:bg-navy-light text-white p-2 rounded-lg text-xs flex items-center gap-1 shadow-sm transition-all active:scale-95">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </a>
+                    </div>
+                    <div class="flex gap-2 mt-2 border-t border-slate-200/50 pt-2">
+                        <a href="tel:${e.fone}" class="flex-1 bg-white border border-slate-200 text-slate-700 text-[11px] font-bold py-1.5 px-3 rounded-lg flex items-center justify-center gap-1.5 shadow-xs hover:bg-slate-50 active:scale-95">
+                            <i class="fa-solid fa-phone text-blue-600"></i> Ligar: ${e.foneDisplay}
+                        </a>
+                        <a href="https://wa.me/${e.fone}" target="_blank" class="flex-1 bg-white border border-slate-200 text-slate-700 text-[11px] font-bold py-1.5 px-3 rounded-lg flex items-center justify-center gap-1.5 shadow-xs hover:bg-emerald-50 active:scale-95">
+                            <i class="fa-brands fa-whatsapp text-emerald-600"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+
+            // 2. Uniformes (Apenas Listagem Título/Código, Sem Descrição)
+            const uniDiv = document.getElementById('uniformesContent');
+            uniDiv.innerHTML = logistics.uniformes.map(u => `
+                <div class="p-3.5 bg-slate-50 border border-slate-100 rounded-xl flex justify-between items-center cursor-pointer hover:bg-slate-100 transition-all" onclick="showUniformeDetalhado('${u.nome}', '${u.mbCodigo}')">
+                    <h4 class="font-bold text-navy-dark text-xs flex items-center gap-1.5"><i class="fa-solid fa-shirt text-navy text-[10px]"></i> ${u.nome}</h4>
+                    <span class="text-[9px] bg-navy text-gold font-extrabold px-2 py-0.5 rounded-full">${u.mbCodigo}</span>
+                </div>
+            `).join('');
+
+            // 3. Contatos
+            const cntDiv = document.getElementById('contatosContent');
+            cntDiv.innerHTML = logistics.contatos.map(c => `
+                <div class="p-3 bg-slate-50 border border-slate-100 rounded-xl flex flex-col gap-2">
+                    <div>
+                        <h4 class="font-bold text-navy-dark text-xs">${c.nome}</h4>
+                        <p class="text-[10px] text-slate-500 font-medium">${c.cargo}</p>
+                    </div>
+                    <div class="flex gap-2 border-t border-slate-200/50 pt-2">
+                        <a href="tel:${c.fone}" class="flex-1 bg-white border border-slate-200 text-slate-700 text-[10px] font-bold py-1.5 rounded-lg flex items-center justify-center gap-1 hover:bg-slate-50 active:scale-95">
+                            <i class="fa-solid fa-phone text-blue-600"></i> Ligar
+                        </a>
+                        <a href="https://wa.me/${c.fone}" target="_blank" class="flex-1 bg-white border border-slate-200 text-slate-700 text-[10px] font-bold py-1.5 rounded-lg flex items-center justify-center gap-1 hover:bg-emerald-50 active:scale-95">
+                            <i class="fa-brands fa-whatsapp text-emerald-600"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Exibe detalhes específicos de uniformes na modal individual (Apenas Título e Categoria/Código)
+        function showUniformeDetalhado(nome, codigo) {
+            const body = document.getElementById('eventoModalBody');
+            body.innerHTML = `
+                <div class="w-12 h-1.5 bg-slate-300 rounded-full mx-auto mb-3 cursor-pointer" onclick="closeModal('modalEvento')"></div>
+                <div class="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
+                    <i class="fa-solid fa-shirt text-navy text-xl"></i>
+                    <h3 class="text-sm font-extrabold text-navy-dark uppercase">Visualização de Uniforme</h3>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
+                    <span class="bg-navy text-gold text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-widest">${codigo}</span>
+                    <h4 class="font-bold text-navy text-base mt-3">${nome}</h4>
+                </div>
+            `;
+            openModal('modalEvento');
+        }
+
+        function renderSchedule() {
+            const activeDay = schedule.find(s => s.date === activeTabDate);
+            const listContainer = document.getElementById('eventsList');
+            
+            if (!activeDay) return;
+
+            // Renderiza os cartões de eventos
+            listContainer.innerHTML = activeDay.events.map((e, index) => {
+                let badgeColor = "bg-slate-100 text-slate-700";
+                if (e.traje.includes("5.5")) {
+                    badgeColor = "bg-yellow-100 text-amber-950 border border-yellow-200 font-extrabold";
+                }
+
+                // Ícones funcionais correspondentes
+                let iconClass = "fa-solid fa-clock";
+                if (e.type === "trânsito") iconClass = "fa-solid fa-car-side";
+                if (e.type === "voo") iconClass = "fa-solid fa-plane-departure";
+                if (e.type === "chegada") iconClass = "fa-solid fa-plane-arrival";
+                if (e.type === "hotel") iconClass = "fa-solid fa-suitcase-rolling";
+                if (e.type === "refeição") iconClass = "fa-solid fa-utensils";
+                if (e.type === "militar") iconClass = "fa-solid fa-shield-halved";
+                if (e.type === "cerimônia") iconClass = "fa-solid fa-medal";
+                if (e.type === "palestra") iconClass = "fa-solid fa-graduation-cap";
+
+                return `
+                    <div class="relative pl-10 cursor-pointer" id="card-${e.id}" onclick="showEventDetails('${e.id}')">
+                        <!-- Node pontual na linha do tempo -->
+                        <div class="absolute left-[13px] top-1.5 h-6 w-6 rounded-full bg-white border-2 border-navy flex items-center justify-center z-10 shadow-sm">
+                            <i class="${iconClass} text-[10px] text-navy"></i>
+                        </div>
+
+                        <!-- Cartão do Evento -->
+                        <div class="bg-slate-50 rounded-xl p-3 border border-slate-100 hover:border-navy/20 hover:shadow-md transition-all">
+                            <div class="flex justify-between items-start mb-1.5">
+                                <span class="text-sm font-black text-navy tracking-tight flex items-center gap-1">
+                                    <i class="fa-regular fa-clock text-navy/60 text-xs"></i> 
+                                    ${e.timeStart}${e.timeEnd ? ` - ${e.timeEnd}` : ''}
+                                </span>
+                                <span onclick="event.stopPropagation(); showUniformeDeBadge('${e.traje}')" class="text-[9px] px-2 py-0.5 rounded-full font-bold uppercase transition-all hover:opacity-80 active:scale-95 ${badgeColor}">
+                                    ${e.traje}
+                                </span>
+                            </div>
+
+                            <h4 class="text-xs font-bold text-slate-800 leading-tight">${e.title}</h4>
+                            
+                            <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-200/40">
+                                <span class="text-[10px] text-slate-500 font-medium flex items-center gap-1 truncate max-w-[180px]">
+                                    <i class="fa-solid fa-location-dot text-slate-400"></i> ${e.local}
+                                </span>
+                                <div class="flex gap-1.5" onclick="event.stopPropagation();">
+                                    <a href="${getMapsLink(e.local, e.mapsQuery)}" target="_blank" class="p-1 bg-white hover:bg-slate-100 border border-slate-200 rounded text-navy hover:text-navy-light text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95">
+                                        <i class="fa-solid fa-map"></i> Mapa
+                                    </a>
+                                    ${e.flight ? `
+                                        <a href="${getFlightAwareLink(e.flight)}" target="_blank" class="p-1 bg-navy text-white hover:bg-navy-light rounded text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95 font-bold">
+                                            <i class="fa-solid fa-plane text-gold"></i> Radar
+                                        </a>
+                                        <a href="${getAzulCheckinLink()}" target="_blank" class="p-1 bg-gold text-navy-dark hover:bg-gold-light rounded text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95 font-bold">
+                                            <i class="fa-solid fa-ticket"></i> Check-in
+                                        </a>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Atualiza botões das abas
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-navy', 'text-white', 'shadow-md');
+                btn.classList.add('text-slate-500', 'hover:text-navy');
+            });
+            const activeBtn = document.getElementById(`tab-${activeTabDate}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-500', 'hover:text-navy');
+                activeBtn.classList.add('bg-navy', 'text-white', 'shadow-md');
+            }
+
+            // Reposiciona o indicador "AGORA" após renderizar a timeline
+            updateIndicator();
+        }
+
+        // Atalho rápido: clicar em um badge de uniforme abre a especificação correta do mesmo
+        function showUniformeDeBadge(trajeNome) {
+            const match = logistics.uniformes.find(u => u.nome.toLowerCase() === trajeNome.toLowerCase());
+            if (match) {
+                showUniformeDetalhado(match.nome, match.mbCodigo);
+            } else {
+                showUniformeDetalhado(trajeNome, "Geral");
+            }
+        }
+
+        // Mudar de aba na navegação de dias
+        function switchTab(dateStr) {
+            activeTabDate = dateStr;
+            renderSchedule();
+        }
+
+        // Exibe modal detalhada do evento ao clicar no cartão
+        function showEventDetails(eventId) {
+            const activeDay = schedule.find(s => s.date === activeTabDate);
+            if (!activeDay) return;
+            const eventObj = activeDay.events.find(e => e.id === eventId);
+            if (!eventObj) return;
+
+            const modalBody = document.getElementById('eventoModalBody');
+            
+            let extraActionButtons = "";
+            if (eventObj.flight) {
+                extraActionButtons = `
+                    <div class="flex flex-col gap-2 mt-4">
+                        <a href="${getFlightAwareLink(eventObj.flight)}" target="_blank" class="w-full bg-navy hover:bg-navy-light text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm">
+                            <i class="fa-solid fa-plane-departure text-gold animate-bounce"></i> Rastrear Voo ${eventObj.flight} (FlightAware)
+                        </a>
+                        <a href="${getAzulCheckinLink()}" target="_blank" class="w-full bg-gold hover:bg-gold-light text-navy-dark text-xs font-extrabold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm">
+                            <i class="fa-solid fa-passport"></i> Efetuar Check-in (Azul)
+                        </a>
+                    </div>
+                `;
+            }
+
+            modalBody.innerHTML = `
+                <div class="w-12 h-1.5 bg-slate-300 rounded-full mx-auto mb-3 cursor-pointer" onclick="closeModal('modalEvento')"></div>
+                <div class="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
+                    <span class="text-xs font-black text-navy bg-gold/20 px-2 py-1 rounded-md">ID ${eventObj.id}</span>
+                    <h3 class="text-xs font-extrabold text-navy-dark uppercase">Visualização de Evento</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <div>
+                            <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Horário Operacional</p>
+                            <p class="text-base font-extrabold text-navy">${eventObj.timeStart}${eventObj.timeEnd ? ` até ${eventObj.timeEnd}` : ''}</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Traje Oficial</p>
+                            <span class="text-xs font-extrabold text-navy-dark flex items-center gap-1 justify-end">
+                                <i class="fa-solid fa-shirt text-[10px] text-navy"></i> ${eventObj.traje}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="p-1">
+                        <h4 class="text-sm font-bold text-slate-800 leading-snug">${eventObj.title}</h4>
+                        <p class="text-xs text-slate-600 mt-2 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-100/70 italic">${eventObj.obs}</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 flex justify-between items-center">
+                        <div class="truncate max-w-[240px]">
+                            <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Local do Evento</p>
+                            <p class="text-xs font-bold text-slate-700 truncate">${eventObj.local}</p>
+                        </div>
+                        <a href="${getMapsLink(eventObj.local, eventObj.mapsQuery)}" target="_blank" class="bg-navy hover:bg-navy-light text-white p-2.5 rounded-xl text-xs flex items-center gap-1 shadow-sm">
+                            <i class="fa-solid fa-map-location-dot text-sm"></i>
+                        </a>
+                    </div>
+
+                    ${extraActionButtons}
+                </div>
+            `;
+
+            openModal('modalEvento');
+        }
+
+        function updateIndicator() {
+            const indicator = document.getElementById('nowIndicator');
+            const simDateEl = document.getElementById('simDate');
+            const simTimeEl = document.getElementById('simTime');
+            const simulatorStatus = document.getElementById('simulatorStatus');
+
+            let checkDateStr, checkTimeStr;
+            const useSim = simDateEl.value !== 'real';
+
+            if (useSim) {
+                checkDateStr = simDateEl.value;
+                checkTimeStr = simTimeEl.value;
+                simulatorStatus.textContent = "Simulado";
+                simulatorStatus.className = "text-[10px] font-bold bg-amber-500 text-white px-2 py-0.5 rounded animate-pulse";
+            } else {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                const day = String(now.getDate()).padStart(2, '0');
+                checkDateStr = `${year}-${month}-${day}`;
+                checkTimeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+                simulatorStatus.textContent = "Tempo Real";
+                simulatorStatus.className = "text-[10px] font-bold bg-emerald-600 text-white px-2 py-0.5 rounded";
+            }
+
+            document.querySelectorAll('[id^="card-"]').forEach(card => {
+                card.querySelector('.bg-slate-50')?.classList.remove('ring-2', 'ring-red-600', 'bg-white');
+            });
+
+            if (checkDateStr !== activeTabDate) {
+                indicator.style.display = 'none';
+                return;
+            }
+
+            const activeDay = schedule.find(s => s.date === activeTabDate);
+            if (!activeDay || activeDay.events.length === 0) {
+                indicator.style.display = 'none';
+                return;
+            }
+
+            function toMinutes(timeStr) {
+                const parts = timeStr.split(':');
+                return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+            }
+
+            const currentMin = toMinutes(checkTimeStr);
+            const sortedEvents = [...activeDay.events].sort((a, b) => toMinutes(a.timeStart) - toMinutes(b.timeStart));
+
+            const minEventTime = toMinutes(sortedEvents[0].timeStart);
+            const maxEventTime = toMinutes(sortedEvents[sortedEvents.length - 1].timeStart);
+
+            if (currentMin < minEventTime - 60 || currentMin > maxEventTime + 60) {
+                indicator.style.display = 'none';
+                return;
+            }
+
+            indicator.style.display = 'flex';
+            
+            let targetTopY = 0;
+            let found = false;
+
+            for (let i = 0; i < sortedEvents.length; i++) {
+                const ev = sortedEvents[i];
+                const evMin = toMinutes(ev.timeStart);
+                const cardEl = document.getElementById(`card-${ev.id}`);
+                
+                if (!cardEl) continue;
+
+                if (currentMin >= evMin && (i === sortedEvents.length - 1 || currentMin < toMinutes(sortedEvents[i + 1].timeStart))) {
+                    const cardInner = cardEl.querySelector('.bg-slate-50');
+                    if (cardInner) {
+                        cardInner.classList.add('ring-2', 'ring-red-600', 'bg-white');
+                    }
+                    
+                    const relativeOffset = cardEl.offsetTop;
+                    
+                    if (i < sortedEvents.length - 1) {
+                        const nextEvMin = toMinutes(sortedEvents[i + 1].timeStart);
+                        const ratio = (currentMin - evMin) / (nextEvMin - evMin);
+                        targetTopY = relativeOffset + 14 + (ratio * 50);
+                    } else {
+                        targetTopY = relativeOffset + 14;
+                    }
+                    
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found && sortedEvents.length > 0) {
+                const firstCard = document.getElementById(`card-${sortedEvents[0].id}`);
+                if (firstCard) {
+                    targetTopY = firstCard.offsetTop + 14;
+                }
+            }
+
+            indicator.style.top = `${targetTopY}px`;
+        }
+
+        // ONLOAD INITIALIZATION
+        window.onload = function () {
+            setupLogisticsModals();
+            renderSchedule();
+
+            document.getElementById('simDate').addEventListener('change', () => {
+                const val = document.getElementById('simDate').value;
+                if (val !== 'real') {
+                    activeTabDate = val;
+                }
+                renderSchedule();
+            });
+            document.getElementById('simTime').addEventListener('input', updateIndicator);
+
+            setInterval(updateIndicator, 15000);
+        };
+    </script>
+</body>
+</html>
