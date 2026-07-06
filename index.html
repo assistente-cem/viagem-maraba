@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Viagem-Marabá-PA</title>
+    <title>Marinha do Brasil - Programa de Eventos</title>
     
     <!-- Configurações de Favicon e Atalho para Tela Inicial -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="icon.png" type="image/x-icon">
-    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="favicon.ico">
     
     <!-- Tailwind CSS para estilização moderna e ágil -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -108,7 +108,7 @@
             <!-- Barra Superior do Header -->
             <div class="flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <!-- Brasão Ofício do 4º Distrito Naval -->
+                    <!-- Brasão Oficial do 4º Distrito Naval -->
                     <img src="brasao-4dn.png" alt="Brasão 4º DN" class="h-10 w-auto object-contain" onerror="this.onerror=null; this.outerHTML='<div class=&quot;bg-gold p-1.5 rounded-full flex items-center justify-center shadow-inner&quot;><i class=&quot;fa-solid fa-anchor text-navy-dark text-lg&quot;></i></div>';">
                     <div>
                         <h1 class="text-xs font-bold tracking-widest uppercase text-gold-light">Marinha do Brasil</h1>
@@ -175,7 +175,7 @@
 
     </main>
 
-    <!-- BARRA DE ACESSO RÁPIDO INFERIOR (ESTILO BOTTOM BAR PARA MOBILE-FIRST) -->
+    <!-- BARRA DE ACESSO RÁPIDO INFERIOR -->
     <div class="fixed bottom-0 left-0 right-0 bg-navy-dark text-white border-t-2 border-gold py-2.5 z-30 shadow-[0_-4px_10px_rgba(0,0,0,0.15)]">
         <div class="max-w-md mx-auto px-2 grid grid-cols-4 gap-1 items-center text-center">
             
@@ -259,8 +259,22 @@
                     <i class="fa-solid fa-folder-open text-navy text-xl"></i>
                     <h3 class="text-base font-bold text-navy-dark uppercase">Arquivos de Apoio</h3>
                 </div>
-                <div class="space-y-3">       
-                    <!-- Opção 1: PDF -->
+                <div class="space-y-3">
+                    <!-- Opção 1: PowerPoint -->
+                    <a href="Apresentacao-MB-CAlte-Jose-Fabio.pptx" download class="flex items-center justify-between p-4 bg-slate-50 border border-slate-100 rounded-xl hover:bg-slate-100 transition-all active:scale-[0.98]">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-orange-100 p-2.5 rounded-lg text-orange-600">
+                                <i class="fa-solid fa-file-powerpoint text-xl"></i>
+                            </div>
+                            <div class="text-left">
+                                <h4 class="font-bold text-slate-800 text-xs">Apresentação PowerPoint</h4>
+                                <p class="text-[10px] text-slate-400">Apresentacao-MB-CAlte-Jose-Fabio.pptx</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-download text-slate-400 text-sm"></i>
+                    </a>
+
+                    <!-- Opção 2: PDF -->
                     <a href="Apresentacao-MB-CAlte-Jose-Fabio.pdf" download class="flex items-center justify-between p-4 bg-slate-50 border border-slate-100 rounded-xl hover:bg-slate-100 transition-all active:scale-[0.98]">
                         <div class="flex items-center gap-3">
                             <div class="bg-red-100 p-2.5 rounded-lg text-red-600">
@@ -275,14 +289,14 @@
                     </a>
 
                     <!-- Opção 3: Vídeos -->
-                    <a href="https://drive.google.com/file/d/1jXKexpDcs3NzRkyB8Sz4a14fVmIG8QmI/view?usp=sharing" download class="flex items-center justify-between p-4 bg-slate-50 border border-slate-100 rounded-xl hover:bg-slate-100 transition-all active:scale-[0.98]">
+                    <a href="Videos-MB.zip" download class="flex items-center justify-between p-4 bg-slate-50 border border-slate-100 rounded-xl hover:bg-slate-100 transition-all active:scale-[0.98]">
                         <div class="flex items-center gap-3">
                             <div class="bg-blue-100 p-2.5 rounded-lg text-blue-600">
                                 <i class="fa-solid fa-file-video text-xl"></i>
                             </div>
                             <div class="text-left">
-                                <h4 class="font-bold text-slate-800 text-xs">Vídeo da Apresentação</h4>
-                                <p class="text-[10px] text-slate-400">Link para download do vídeo da apresentação</p>
+                                <h4 class="font-bold text-slate-800 text-xs">Vídeos da Apresentação</h4>
+                                <p class="text-[10px] text-slate-400">Videos-MB.zip</p>
                             </div>
                         </div>
                         <i class="fa-solid fa-download text-slate-400 text-sm"></i>
@@ -298,6 +312,16 @@
             <div class="w-12 h-1.5 bg-slate-300 rounded-full mx-auto my-3 cursor-pointer" onclick="closeModal('modalEvento')"></div>
             <div class="px-5 pb-6 overflow-y-auto" id="eventoModalBody">
                 <!-- Preenchido dinamicamente ao clicar no cartão -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: BOARDING PASS (CARTÃO DE EMBARQUE) -->
+    <div id="modalBoardingPass" class="fixed inset-0 bg-black/60 z-50 flex items-end justify-center hidden" onclick="closeModalOnOutsideClick(event, 'modalBoardingPass')">
+        <div class="bg-[#111827] w-full max-w-md rounded-t-3xl shadow-2xl bottom-sheet hidden-sheet flex flex-col max-h-[90vh]">
+            <div class="w-12 h-1.5 bg-slate-700 rounded-full mx-auto my-3 cursor-pointer" onclick="closeModal('modalBoardingPass')"></div>
+            <div class="px-5 pb-6 overflow-y-auto" id="boardingPassModalBody">
+                <!-- Preenchido dinamicamente pelo JavaScript -->
             </div>
         </div>
     </div>
@@ -552,7 +576,7 @@
                         type: "cerimônia",
                         mapsQuery: "Carajás Centro de Convenções Leonildo Borges Rocha"
                     },
-                     {
+                    {
                         id: "30.14",
                         timeStart: "20:00",
                         timeEnd: "",
@@ -633,19 +657,119 @@
             return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query + ", Pará, Brasil")}`;
         }
 
-        // Função para gerar o link correto do FlightAware com o código limpo
-        function getFlightAwareLink(flightCode) {
-            const cleanCode = flightCode.replace(/\s+/g, '');
-            let formattedCode = cleanCode;
-            if (cleanCode.startsWith('AD')) {
-                formattedCode = 'AZU' + cleanCode.substring(2);
-            }
-            return `https://flightaware.com/live/flight/${formattedCode}`;
+        // Retorna o código do voo real ou formatado
+        function getFlightNumber(flightCode) {
+            return flightCode === "LA_IDA" || flightCode === "AD4460" ? "AD4460" : "AD4113";
         }
 
-        // Link oficial para check-in web da companhia Azul
-        function getAzulCheckinLink() {
-            return `https://www.voeazul.com.br/br/pt/home/azulwebcheckin`;
+        // Retorna o link direto para rastreamento no FlightAware traduzindo AD para AZU
+        function getFlightAwareLink(flightCode) {
+            const flightNum = getFlightNumber(flightCode);
+            const cleanCode = flightNum.replace('AD', 'AZU');
+            return `https://flightaware.com/live/flight/${cleanCode}`;
+        }
+
+        // Função segura para cópia de dados sem APIs restritas no iFrame
+        function copyToClipboard(text, btnElement) {
+            const tempInput = document.createElement("input");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // Suporte para mobile
+            try {
+                const successful = document.execCommand("copy");
+                if (successful) {
+                    const icon = btnElement.querySelector('i');
+                    if (icon) {
+                        icon.className = "fa-solid fa-check text-emerald-600";
+                        setTimeout(() => {
+                            icon.className = "fa-solid fa-copy text-black";
+                        }, 2000);
+                    }
+                }
+            } catch (err) {
+                console.error("Falha ao copiar: ", err);
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // Função principal do Cartão de Embarque Dinâmico (Boarding Pass Azul)
+        function showBoardingPass(flightCode) {
+            let sOrig = "BEL", sDest = "MAB";
+            let flightNum = getFlightNumber(flightCode);
+            
+            if (flightCode === "AD4113" || flightCode === "LA_VOLTA") {
+                sOrig = "MAB";
+                sDest = "BEL";
+            }
+
+            const modalBody = document.getElementById('boardingPassModalBody');
+            modalBody.innerHTML = `
+                <!-- Pass Header -->
+                <div class="bg-[#1e293b] border-t-[8px] border-[#111827] rounded-t-2xl p-4 text-white flex justify-between items-center">
+                    <div class="text-left">
+                        <p class="text-[9px] text-slate-400 uppercase tracking-wider font-bold">Passageiro</p>
+                        <h4 class="font-extrabold text-sm truncate max-w-[200px] uppercase">SILVA / JOSÉ FÁBIO CARNEIRO DA</h4>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-black text-xs tracking-widest text-slate-300">AZUL</span>
+                    </div>
+                </div>
+
+                <!-- Ticket Body (Asas e Rota) -->
+                <div class="bg-white p-5 rounded-b-2xl border-x border-b border-slate-100 relative">
+                    
+                    <div class="flex justify-between items-center px-2 relative">
+                        <!-- Origem -->
+                        <div class="text-left">
+                            <h3 class="text-4xl font-black text-navy tracking-tight">${sOrig}</h3>
+                            <p class="text-[9px] text-slate-400 uppercase font-bold mt-1">Origem</p>
+                        </div>
+
+                        <!-- Linha de Conexão com Avião -->
+                        <div class="flex-grow mx-4 relative flex items-center justify-center">
+                            <div class="w-full border-t-2 border-dashed border-slate-200"></div>
+                            <div class="absolute bg-white px-2">
+                                <i class="fa-solid fa-plane text-slate-400 text-sm transform rotate-90"></i>
+                            </div>
+                        </div>
+
+                        <!-- Destino -->
+                        <div class="text-right">
+                            <h3 class="text-4xl font-black text-navy tracking-tight">${sDest}</h3>
+                            <p class="text-[9px] text-slate-400 uppercase font-bold mt-1">Destino</p>
+                        </div>
+                    </div>
+
+                    <!-- Grid de Informações de Segurança -->
+                    <div class="grid grid-cols-2 gap-4 mt-6 pt-4 border-t border-slate-100 items-center">
+                        <!-- Coluna 1: Número do Voo -->
+                        <div class="text-left">
+                            <p class="text-[9px] text-slate-400 uppercase font-bold">Número do Voo</p>
+                            <p class="font-black text-navy text-xl mt-0.5">${flightNum}</p>
+                        </div>
+
+                        <!-- Coluna 2: Localizador Estruturado para não Quebrar Linha -->
+                        <div class="text-right flex flex-col items-end justify-center min-w-0">
+                            <p class="text-[9px] text-slate-400 uppercase font-bold w-full text-right tracking-wider whitespace-nowrap">Localizador</p>
+                            <div class="flex items-center gap-1.5 mt-0.5 whitespace-nowrap min-w-0">
+                                <span class="text-[#ffcc00] font-black text-xl sm:text-2xl tracking-wider select-all leading-none">EKY4NM</span>
+                                <button onclick="copyToClipboard('EKY4NM', this)" class="bg-transparent text-black active:scale-90 transition-transform p-1 focus:outline-none flex-shrink-0" title="Copiar Localizador">
+                                    <i class="fa-solid fa-copy text-base leading-none"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botão Fazer Check-In -->
+                    <div class="mt-6">
+                        <a href="https://www.voeazul.com.br/br/pt/home/azulwebcheckin" target="_blank" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-blue-100 transition-all active:scale-[0.98]">
+                            <i class="fa-solid fa-passport"></i> FAZER CHECK-IN
+                        </a>
+                    </div>
+                </div>
+            `;
+            openModal('modalBoardingPass');
         }
 
         // MODAIS CONTROLADORES (BOTTOM-SHEET SLIDE UP)
@@ -660,6 +784,7 @@
             }, 10);
         }
 
+        // Fechar modais com transição suave
         function closeModal(id) {
             const modal = document.getElementById(id);
             const sheet = modal.querySelector('.bottom-sheet');
@@ -671,6 +796,7 @@
             }, 350);
         }
 
+        // Fechar modais clicando fora do conteúdo
         function closeModalOnOutsideClick(event, id) {
             const modal = document.getElementById(id);
             const sheet = modal.querySelector('.bottom-sheet');
@@ -679,6 +805,7 @@
             }
         }
 
+        // Configuração dos modais logísticos
         function setupLogisticsModals() {
             // 1. Estadia
             const estDiv = document.getElementById('estadiaContent');
@@ -732,7 +859,7 @@
             `).join('');
         }
 
-        // Exibe detalhes específicos de uniformes na modal individual
+        // Detalhe individual de uniforme militar
         function showUniformeDetalhado(nome, codigo) {
             const body = document.getElementById('eventoModalBody');
             body.innerHTML = `
@@ -749,7 +876,7 @@
             openModal('modalEvento');
         }
 
-        // RENDERIZAÇÃO PRINCIPAL DO CRONOGRAMA
+        // RENDERIZAÇÃO DA TIMELINE DO CRONOGRAMA
         function renderSchedule() {
             const activeDay = schedule.find(s => s.date === activeTabDate);
             const listContainer = document.getElementById('eventsList');
@@ -795,23 +922,24 @@
 
                             <h4 class="text-xs font-bold text-slate-800 leading-tight">${e.title}</h4>
                             
-                            <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-200/40">
-                                <a href="${getMapsLink(e.local, e.mapsQuery)}" target="_blank" onclick="event.stopPropagation();" class="text-[10px] text-slate-500 hover:text-navy hover:underline font-medium flex items-center gap-1 truncate max-w-[170px]">
+                            <!-- Rodapé do cartão flex-col no mobile -->
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-2.5 pt-2 border-t border-slate-200/40">
+                                <a href="${getMapsLink(e.local, e.mapsQuery)}" target="_blank" onclick="event.stopPropagation();" class="text-[10px] text-slate-500 hover:text-navy hover:underline font-medium flex items-center gap-1 truncate w-full sm:max-w-[140px]">
                                     <i class="fa-solid fa-location-dot text-slate-400"></i> ${e.local}
                                 </a>
-                                <div class="flex gap-1.5" onclick="event.stopPropagation();">
+                                <div class="flex flex-wrap gap-1.5 w-full sm:w-auto justify-start sm:justify-end" onclick="event.stopPropagation();">
                                     ${e.cardapioDownload ? `
                                         <a href="${e.cardapioDownload}" download class="p-1 px-1.5 bg-amber-500 text-white hover:bg-amber-600 rounded text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95 font-bold">
                                             <i class="fa-solid fa-file-pdf"></i> Cardápio
                                         </a>
                                     ` : ''}
                                     ${e.flight ? `
-                                        <a href="${getFlightAwareLink(e.flight)}" target="_blank" class="p-1 px-1.5 bg-navy text-white hover:bg-navy-light rounded text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95 font-bold">
-                                            <i class="fa-solid fa-plane text-gold"></i> Radar
+                                        <a href="${getFlightAwareLink(e.flight)}" target="_blank" class="p-1.5 px-3 bg-navy text-white hover:bg-navy-light rounded-xl text-[10px] sm:text-xs flex items-center gap-1.5 shadow-xs transition-all active:scale-95 font-bold uppercase">
+                                            <i class="fa-solid fa-plane text-gold"></i> Rastrear ${getFlightNumber(e.flight)}
                                         </a>
-                                        <a href="${getAzulCheckinLink()}" target="_blank" class="p-1 px-1.5 bg-gold text-navy-dark hover:bg-gold-light rounded text-[10px] flex items-center gap-1 shadow-2xs transition-all active:scale-95 font-bold">
-                                            <i class="fa-solid fa-ticket"></i> Check-in
-                                        </a>
+                                        <button onclick="event.stopPropagation(); showBoardingPass('${e.flight}')" class="p-1.5 px-3 bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-100 rounded-xl text-[10px] sm:text-xs flex items-center gap-1.5 shadow-xs transition-all active:scale-95 font-bold uppercase">
+                                            <i class="fas fa-search text-[10px] sm:text-xs"></i> LOCALIZADOR
+                                        </button>
                                     ` : ''}
                                 </div>
                             </div>
@@ -831,11 +959,11 @@
                 activeBtn.classList.add('bg-navy', 'text-white', 'shadow-md');
             }
 
-            // Reposiciona o indicador "AGORA" após renderizar a timeline
+            // Sincroniza indicador dinâmico de tempo
             updateIndicator();
         }
 
-        // Atalho rápido: clicar em um badge de uniforme abre a especificação correta do mesmo
+        // Redirecionamento rápido ao clicar no badge do uniforme militar
         function showUniformeDeBadge(trajeNome) {
             const match = logistics.uniformes.find(u => u.nome.toLowerCase() === trajeNome.toLowerCase());
             if (match) {
@@ -864,12 +992,12 @@
             if (eventObj.flight) {
                 extraActionButtons = `
                     <div class="flex flex-col gap-2 mt-4">
-                        <a href="${getFlightAwareLink(eventObj.flight)}" target="_blank" class="w-full bg-navy hover:bg-navy-light text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm">
-                            <i class="fa-solid fa-plane-departure text-gold animate-bounce"></i> Rastrear Voo ${eventObj.flight} (FlightAware)
+                        <a href="${getFlightAwareLink(eventObj.flight)}" target="_blank" class="w-full bg-navy hover:bg-navy-light text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all active:scale-95">
+                            <i class="fa-solid fa-plane-departure text-gold animate-bounce"></i> RASTREAR VOO ${getFlightNumber(eventObj.flight)} (FlightAware)
                         </a>
-                        <a href="${getAzulCheckinLink()}" target="_blank" class="w-full bg-gold hover:bg-gold-light text-navy-dark text-xs font-extrabold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm">
-                            <i class="fa-solid fa-passport"></i> Efetuar Check-in (Azul)
-                        </a>
+                        <button onclick="showBoardingPass('${eventObj.flight}')" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all active:scale-95">
+                            <i class="fas fa-search text-gold"></i> VISUALIZAR LOCALIZADOR (BOARDING PASS)
+                        </button>
                     </div>
                 `;
             }
